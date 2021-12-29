@@ -1,4 +1,4 @@
-package com.example.meme_developers_life_app.ui.fragment
+package com.example.meme_developers_life_app.data
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
