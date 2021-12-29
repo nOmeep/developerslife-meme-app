@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp">
+
+    <ImageView
+        android:id="@+id/ivMemePicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_sample_meme" />
+
+    <TextView
+        android:id="@+id/tvMemeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ivMemePicture"
+        android:layout_alignBottom="@id/ivMemePicture"
+        android:layout_margin="8dp"
+        android:drawableStart="@drawable/ic_meme_description_start"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxEms="20"
+        android:maxLines="1"
+        android:text="Sample text"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+</RelativeLayout>
