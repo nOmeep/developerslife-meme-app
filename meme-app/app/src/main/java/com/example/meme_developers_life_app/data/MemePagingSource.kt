@@ -5,6 +5,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.meme_developers_life_app.api.DevelopersLifeApi
 import com.example.meme_developers_life_app.data.items.Meme
+import com.example.meme_developers_life_app.data.items.MemePage
 import retrofit2.HttpException
 import java.io.IOException
 import java.lang.NullPointerException
@@ -18,25 +19,16 @@ class MemePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Meme> {
         val position = params.key ?: LATEST_MEMES_START_PAGE
 
-        try {
-            val memeList = mutableListOf<Meme>()
+        return try {
             val response = memeApi.getLatestMemes(position)
 
-            return if (response.isSuccessful && response.body() != null) {
-                Log.d("URL", "$response")
-                memeList.addAll(response.body()!!.memePage.result)
-
-                LoadResult.Page(
-                    data = memeList,
-                    prevKey = if (position == LATEST_MEMES_START_PAGE) null
-                    else position - 1,
-                    nextKey = if (memeList.isEmpty()) null
-                    else position + 1
-                )
-            } else {
-                LoadResult.Error(NullPointerException())
-            }
-
+            LoadResult.Page(
+                data = response.result,
+                prevKey = if (position == LATEST_MEMES_START_PAGE) null
+                else position - 1,
+                nextKey = if (response.result.isEmpty()) null
+                else position + 1
+            )
 
         } catch(e : IOException) {
             Log.d("ERROR", "$e")

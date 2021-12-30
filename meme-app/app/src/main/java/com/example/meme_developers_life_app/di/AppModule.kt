@@ -14,15 +14,11 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideRetrofit() : Retrofit =
-        Retrofit.Builder()
-            .baseUrl(DevelopersLifeApi.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-    @Provides
-    @Singleton
-    fun provideApi(retrofit: Retrofit) : DevelopersLifeApi {
-        return retrofit.create(DevelopersLifeApi::class.java)
+    fun provideApi() : DevelopersLifeApi {
+        return Retrofit.Builder()
+                .baseUrl(DevelopersLifeApi.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(DevelopersLifeApi::class.java)
     }
 }

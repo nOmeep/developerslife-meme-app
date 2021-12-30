@@ -32,11 +32,13 @@ class MemePagerAdapter : PagingDataAdapter<Meme, MemePagerAdapter.MemeViewHolder
         fun bind(meme : Meme) {
             binding.apply {
                 Glide.with(itemView)
-                    .load(meme.previewURL)
+                    .load(meme.gifURL)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error)
                     .into(ivMemePicture)
+
+                tvMemeName.text = meme.description
             }
         }
     }

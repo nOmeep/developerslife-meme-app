@@ -5,21 +5,21 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Meme(
-    val author: String,
-    val canVote: Boolean,
-    val commentsCount: Int,
-    val date: String,
-    val description: String,
-    val fileSize: Int,
-    val gifSize: Int,
-    val gifURL: String,
-    val height: String,
     val id: Int,
+    val description: String,
+    val votes: Int,
+    val author: String,
+    val date: String,
+    val gifURL: String,
+    val gifSize: Int,
     val previewURL: String,
-    val type: String,
+    val videoURL: String,
     val videoPath: String,
     val videoSize: Int,
-    val videoURL: String,
-    val votes: Int,
-    val width: String
-) : Parcelable
+    val type: String,
+    val width: String,
+    val height: String,
+    val commentsCount: Int,
+    val fileSize: Int,
+    val canVote: Boolean,
+): Parcelable
