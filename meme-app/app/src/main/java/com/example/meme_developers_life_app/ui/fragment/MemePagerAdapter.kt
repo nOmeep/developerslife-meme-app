@@ -35,6 +35,7 @@ class MemePagerAdapter : PagingDataAdapter<Meme, MemePagerAdapter.MemeViewHolder
                     .load(meme.gifURL)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
+                    .placeholder(R.drawable.loading_image)
                     .error(R.drawable.ic_error)
                     .into(ivMemePicture)
 

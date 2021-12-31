@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="wrap_content"
     android:minHeight="400dp"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/ivMemePicture"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_sample_meme" />
+        android:layout_height="400dp"
+        android:src="@drawable/ic_sample_meme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/half_rounded_text_view"
+        app:layout_constraintTop_toTopOf="@id/tvMemeName"
+        app:layout_constraintBottom_toBottomOf="@id/tvMemeName"
+        app:layout_constraintLeft_toLeftOf="@id/tvMemeName"
+        app:layout_constraintRight_toRightOf="@id/tvMemeName"/>
 
     <TextView
         android:id="@+id/tvMemeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/ivMemePicture"
-        android:layout_alignBottom="@id/ivMemePicture"
-        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:drawableStart="@drawable/ic_meme_description_start"
+        android:drawablePadding="4dp"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="center|left"
         android:maxEms="20"
         android:maxLines="1"
         android:text="Sample text"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMemePicture" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
