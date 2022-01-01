@@ -1,4 +1,4 @@
-package com.example.meme_developers_life_app.ui.fragment
+package com.example.meme_developers_life_app.ui.fragment_memes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

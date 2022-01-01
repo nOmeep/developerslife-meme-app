@@ -7,7 +7,12 @@
 
     <fragment
         android:id="@+id/memeFragment"
-        android:name="com.example.meme_developers_life_app.ui.fragment.MemeFragment"
+        android:name="com.example.meme_developers_life_app.ui.fragment_memes.MemeFragment"
         android:label="fragment_memes"
         tools:layout="@layout/fragment_memes" />
+    <fragment
+        android:id="@+id/fragmentSaved"
+        android:name="com.example.meme_developers_life_app.ui.fragment_saved.FragmentSaved"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
 </navigation>

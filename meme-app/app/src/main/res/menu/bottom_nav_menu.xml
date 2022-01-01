@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/miLatest"
+        android:id="@+id/memeFragment"
         android:title="latest"
         android:icon="@drawable/ic_latest_memes_bottom_nav"/>
 
     <item
-        android:id="@+id/miSaved"
+        android:id="@+id/fragmentSaved"
         android:title="saved"
         android:icon="@drawable/ic_saved_memes_bottom_nav"/>
 
