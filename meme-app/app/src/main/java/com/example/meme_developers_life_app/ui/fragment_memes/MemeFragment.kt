@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.meme_developers_life_app.R
 import com.example.meme_developers_life_app.databinding.FragmentMemesBinding
+import com.example.meme_developers_life_app.ui.fragment_memes.loading.MemeLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,9 +24,21 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
         val adapter = MemePagerAdapter()
         binding.apply {
             rvMemes.setHasFixedSize(true)
-            rvMemes.adapter = adapter
+            rvMemes.adapter = adapter.withLoadStateHeaderAndFooter(
+                // loading верху
+                header = MemeLoadStateAdapter {
+                    // функция пейджера, которая сама перезапустит
+                    adapter.retry()
+                },
+                // loading снизу
+                footer = MemeLoadStateAdapter {
+                    // функция пейджера, которая сама перезапустит
+                    adapter.retry()
+                }
+            )
         }
 
+        // тут запоминаем мемы
         viewModel.memes.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }

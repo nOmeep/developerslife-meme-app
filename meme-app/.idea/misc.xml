@@ -20,6 +20,12 @@
         <entry key="..\:/AndroidProjects/meme-app/meme-app/meme-app/app/src/main/res/layout/fragment_saved.xml" value="0.30117753623188404" />
         <entry key="..\:/AndroidProjects/meme-app/meme-app/meme-app/app/src/main/res/layout/item_single_meme.xml" value="0.5208333333333334" />
         <entry key="..\:/AndroidProjects/meme-app/meme-app/meme-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5208333333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20697463768115942" />
+        <entry key="app/src/main/res/layout/fragment_memes.xml" value="0.20697463768115942" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.20697463768115942" />
+        <entry key="app/src/main/res/layout/item_single_meme.xml" value="0.20697463768115942" />
+        <entry key="app/src/main/res/layout/load_state_footer.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/meme_category_menu.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>

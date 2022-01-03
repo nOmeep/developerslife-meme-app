@@ -14,5 +14,4 @@ class MemeViewModel @Inject constructor(
 
     val memes = repository.searchPage()
         .cachedIn(viewModelScope)
-
 }

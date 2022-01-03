@@ -14,7 +14,7 @@ class MemeRepository @Inject constructor(
     fun searchPage() =
         Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 10,
                 maxSize = 100,
                 enablePlaceholders = false
             ),
