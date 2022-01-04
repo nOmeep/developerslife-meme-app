@@ -13,8 +13,9 @@ interface DevelopersLifeApi {
         const val BASE_URL = "https://developerslife.ru/"
     }
 
-    @GET("/latest/{page}?json=true")
+    @GET("/{category}/{page}?json=true")
     suspend fun getLatestMemes(
+        @Path("category") category : String,
         @Path("page") page: Int
     ): MemePage
 }

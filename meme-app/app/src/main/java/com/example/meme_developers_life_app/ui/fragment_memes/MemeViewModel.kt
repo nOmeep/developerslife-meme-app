@@ -1,7 +1,6 @@
 package com.example.meme_developers_life_app.ui.fragment_memes
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.example.meme_developers_life_app.data.MemeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +11,14 @@ class MemeViewModel @Inject constructor(
     private val repository: MemeRepository
 ) : ViewModel() {
 
-    val memes = repository.searchPage()
-        .cachedIn(viewModelScope)
+    private val currentCategory = MutableLiveData("latest")
+
+    val memes = currentCategory.switchMap { categoryString ->
+        repository.searchPage(categoryString)
+            .cachedIn(viewModelScope)
+    }
+
+    fun switchCategory(category: String) {
+        currentCategory.value = category
+    }
 }

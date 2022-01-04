@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class MemeRepository @Inject constructor(
     private val memeApi : DevelopersLifeApi
 ) {
-    fun searchPage() =
+    fun searchPage(category : String) =
         Pager(
             config = PagingConfig(
                 pageSize = 10,
@@ -19,7 +19,7 @@ class MemeRepository @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                MemePagingSource(memeApi)
+                MemePagingSource(memeApi, category)
             }
         ).liveData
 }

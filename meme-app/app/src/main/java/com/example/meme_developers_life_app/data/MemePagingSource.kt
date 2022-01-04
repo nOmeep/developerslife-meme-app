@@ -13,14 +13,15 @@ import java.lang.NullPointerException
 private const val LATEST_MEMES_START_PAGE = 1
 
 class MemePagingSource(
-    private val memeApi : DevelopersLifeApi
+    private val memeApi : DevelopersLifeApi,
+    private val category : String
 ) : PagingSource<Int, Meme>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Meme> {
         val position = params.key ?: LATEST_MEMES_START_PAGE
 
         return try {
-            val response = memeApi.getLatestMemes(position)
+            val response = memeApi.getLatestMemes(category, position)
 
             LoadResult.Page(
                 data = response.result,

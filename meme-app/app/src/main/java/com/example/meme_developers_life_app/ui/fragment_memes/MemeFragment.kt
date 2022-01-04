@@ -1,6 +1,9 @@
 package com.example.meme_developers_life_app.ui.fragment_memes
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,6 +45,30 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
         viewModel.memes.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater.inflate(R.menu.meme_fragment_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.miLatest -> {
+                viewModel.switchCategory("latest")
+            }
+            R.id.miHot -> {
+                viewModel.switchCategory("hot")
+            }
+            R.id.miTop -> {
+                viewModel.switchCategory("top")
+            }
+        }
+
+        return true
     }
 
     override fun onDestroyView() {

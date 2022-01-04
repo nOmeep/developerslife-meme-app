@@ -16,7 +16,9 @@
         android:id="@+id/tvError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Results could not be loaded" />
+        android:maxEms="15"
+        android:text="Что-то пошло не так, проверьте подключение к интернету"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/btnRetry"
