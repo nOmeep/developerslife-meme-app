@@ -10,7 +10,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.lang.NullPointerException
 
-private const val LATEST_MEMES_START_PAGE = 1
+private const val LATEST_MEMES_START_PAGE = 0
 
 class MemePagingSource(
     private val memeApi : DevelopersLifeApi,

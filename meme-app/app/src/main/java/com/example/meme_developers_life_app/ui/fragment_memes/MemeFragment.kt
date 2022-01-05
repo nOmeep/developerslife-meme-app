@@ -68,6 +68,7 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
             }
         }
 
+        binding.rvMemes.scrollToPosition(0)
         return true
     }
 

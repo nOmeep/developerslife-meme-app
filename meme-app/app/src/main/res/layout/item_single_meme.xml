@@ -16,14 +16,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivMemePicture"
+        app:layout_constraintLeft_toLeftOf="@id/ivMemePicture"
+        app:layout_constraintRight_toRightOf="@id/ivMemePicture"
+        app:layout_constraintTop_toTopOf="@id/ivMemePicture"
+        app:srcCompat="@drawable/avd_instagram_like_animation"
+        android:alpha="0"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/half_rounded_text_view"
-        app:layout_constraintTop_toTopOf="@id/tvMemeName"
         app:layout_constraintBottom_toBottomOf="@id/tvMemeName"
         app:layout_constraintLeft_toLeftOf="@id/tvMemeName"
-        app:layout_constraintRight_toRightOf="@id/tvMemeName"/>
+        app:layout_constraintRight_toRightOf="@id/tvMemeName"
+        app:layout_constraintTop_toTopOf="@id/tvMemeName" />
 
     <TextView
         android:id="@+id/tvMemeName"
