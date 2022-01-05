@@ -1,6 +1,10 @@
 package com.example.meme_developers_life_app.di
 
+import android.app.Application
+import androidx.room.Room
 import com.example.meme_developers_life_app.api.DevelopersLifeApi
+import com.example.meme_developers_life_app.db.MemeDao
+import com.example.meme_developers_life_app.db.SavedMemesDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,5 +24,12 @@ object AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(DevelopersLifeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application) : SavedMemesDatabase {
+        return Room.databaseBuilder(app, SavedMemesDatabase::class.java, "saved_memes_database")
+            .build()
     }
 }

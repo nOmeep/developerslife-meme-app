@@ -6,11 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment_saved.FragmentSaved">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSaved"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:reverseLayout="false"
+        app:spanCount="2"
+        tools:listitem="@layout/item_saved_meme" />
+
     <TextView
+        android:id="@+id/tvEmptyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="saved items"
-        android:textSize="20sp"
+        android:text="You have no saved memes"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

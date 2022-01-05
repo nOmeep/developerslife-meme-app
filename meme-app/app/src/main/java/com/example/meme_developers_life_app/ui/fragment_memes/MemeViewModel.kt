@@ -3,6 +3,7 @@ package com.example.meme_developers_life_app.ui.fragment_memes
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.example.meme_developers_life_app.data.MemeRepository
+import com.example.meme_developers_life_app.data.items.Meme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -20,5 +21,11 @@ class MemeViewModel @Inject constructor(
 
     fun switchCategory(category: String) {
         currentCategory.value = category
+    }
+
+    val memeDao = repository.memeDao
+
+    fun getAllSaved() : LiveData<List<Meme>>{
+        return repository.memeDao.getAllSavedMemes()
     }
 }

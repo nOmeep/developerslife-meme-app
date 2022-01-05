@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.meme_developers_life_app.R
@@ -24,7 +25,14 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMemesBinding.bind(view)
 
-        val adapter = MemePagerAdapter()
+        val adapter = MemePagerAdapter(viewModel.memeDao)
+
+        adapter.addLoadStateListener { loadState ->
+            if (loadState.append.endOfPaginationReached) {
+                binding.tvEmptyRequest.isVisible = adapter.itemCount < 1
+            }
+        }
+
         binding.apply {
             rvMemes.setHasFixedSize(true)
             rvMemes.adapter = adapter.withLoadStateHeaderAndFooter(
@@ -43,6 +51,7 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
 
         // тут запоминаем мемы
         viewModel.memes.observe(viewLifecycleOwner) {
+            binding.tvEmptyRequest.isVisible = false
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 

@@ -1,7 +1,7 @@
 package com.example.meme_developers_life_app.data.items
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MemePage(
