@@ -5,19 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.meme_developers_life_app.R
 import com.example.meme_developers_life_app.data.items.Meme
+import com.example.meme_developers_life_app.data.items.loadAsGif
 import com.example.meme_developers_life_app.databinding.ItemSavedMemeBinding
 import com.example.meme_developers_life_app.db.MemeDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SavedMemesAdapter(
-    private val savedMemes: List<Meme>,
     private val memeDao : MemeDao
 ) : RecyclerView.Adapter<SavedMemesAdapter.SavedMemeViewHolder>() {
 
@@ -41,20 +37,14 @@ class SavedMemesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(meme: Meme) {
             binding.apply {
-                Glide.with(itemView)
-                    .asGif()
-                    .load(meme.gifURL)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
-                    .into(ivImageSaved)
-            }
+                meme.loadAsGif(itemView, ivImageSaved)
 
-            binding.cardView.setOnLongClickListener {
-                CoroutineScope(Dispatchers.IO).launch {
-                    memeDao.deleteSingleSavedMeme(meme.id)
+                cardView.setOnLongClickListener {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        memeDao.deleteSingleSavedMeme(meme.id)
+                    }
+                    true
                 }
-                true
             }
         }
     }

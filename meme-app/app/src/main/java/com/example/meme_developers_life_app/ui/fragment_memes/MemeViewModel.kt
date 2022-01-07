@@ -1,6 +1,7 @@
 package com.example.meme_developers_life_app.ui.fragment_memes
 
 import androidx.lifecycle.*
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.meme_developers_life_app.data.MemeRepository
 import com.example.meme_developers_life_app.data.items.Meme
@@ -13,18 +14,20 @@ class MemeViewModel @Inject constructor(
 ) : ViewModel() {
     val memeDao = repository.memeDao
 
-    private val currentCategory = MutableLiveData("latest")
+    private val currentCategory = MutableLiveData("random")
 
-    val memes = currentCategory.switchMap { categoryString ->
-        repository.searchPage(categoryString)
-            .cachedIn(viewModelScope)
+    fun getMemes() : LiveData<PagingData<Meme>> {
+        return currentCategory.switchMap { categoryString ->
+            repository.searchPage(categoryString)
+                .cachedIn(viewModelScope)
+        }
     }
 
     fun switchCategory(category: String) {
         currentCategory.value = category
     }
 
-    fun getAllSaved() : LiveData<List<Meme>>{
+    fun getAllSaved(): LiveData<List<Meme>> {
         return repository.memeDao.getAllSavedMemes()
     }
 }

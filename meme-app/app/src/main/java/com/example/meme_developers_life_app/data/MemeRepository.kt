@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class MemeRepository @Inject constructor(
     private val memeApi : DevelopersLifeApi,
-    private val db : SavedMemesDatabase
+    db : SavedMemesDatabase
 ) {
     val memeDao = db.getMemeDao()
 

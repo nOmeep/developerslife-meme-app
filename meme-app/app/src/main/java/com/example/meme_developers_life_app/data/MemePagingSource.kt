@@ -5,10 +5,8 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.meme_developers_life_app.api.DevelopersLifeApi
 import com.example.meme_developers_life_app.data.items.Meme
-import com.example.meme_developers_life_app.data.items.MemePage
 import retrofit2.HttpException
 import java.io.IOException
-import java.lang.NullPointerException
 
 private const val LATEST_MEMES_START_PAGE = 0
 
@@ -21,16 +19,31 @@ class MemePagingSource(
         val position = params.key ?: LATEST_MEMES_START_PAGE
 
         return try {
-            val response = memeApi.getLatestMemes(category, position)
 
-            LoadResult.Page(
-                data = response.result,
-                prevKey = if (position == LATEST_MEMES_START_PAGE) null
-                else position - 1,
-                nextKey = if (response.result.isEmpty()) null
-                else position + 1
-            )
+            if (category == "random") {
+                val randomMemes = mutableSetOf<Meme>()
+                repeat(10) {
+                    val response = memeApi.getRandomMeme()
+                    randomMemes.add(response)
+                }
+                LoadResult.Page(
+                    data = randomMemes.toList(),
+                    prevKey = if (position == LATEST_MEMES_START_PAGE) null
+                    else position - 1,
+                    nextKey = if (randomMemes.isEmpty()) null
+                    else position + 1
+                )
+            } else {
+                val response = memeApi.getLatestMemes(category, position)
 
+                LoadResult.Page(
+                    data = response.result,
+                    prevKey = if (position == LATEST_MEMES_START_PAGE) null
+                    else position - 1,
+                    nextKey = if (response.result.isEmpty()) null
+                    else position + 1
+                )
+            }
         } catch(e : IOException) {
             Log.d("ERROR", "$e")
             return LoadResult.Error(e)

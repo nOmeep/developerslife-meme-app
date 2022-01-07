@@ -1,7 +1,6 @@
 package com.example.meme_developers_life_app.ui.fragment_memes
 
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +8,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.meme_developers_life_app.R
 import com.example.meme_developers_life_app.data.items.Meme
+import com.example.meme_developers_life_app.data.items.loadAsGif
 import com.example.meme_developers_life_app.databinding.ItemSingleMemeBinding
 import com.example.meme_developers_life_app.db.MemeDao
 import com.example.meme_developers_life_app.util.DoubleClickListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MemePagerAdapter(private val memeDao: MemeDao) : PagingDataAdapter<Meme, MemePagerAdapter.MemeViewHolder>(MEME_DIFFER) {
 
@@ -43,13 +38,7 @@ class MemePagerAdapter(private val memeDao: MemeDao) : PagingDataAdapter<Meme, M
         fun bind(meme : Meme) {
 
             binding.apply {
-                Glide.with(itemView)
-                    .load(meme.gifURL)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .placeholder(R.drawable.loading_image)
-                    .error(R.drawable.ic_error)
-                    .into(ivMemePicture)
+                meme.loadAsGif(itemView, ivMemePicture)
 
                 tvMemeName.text = meme.description
 
@@ -57,6 +46,8 @@ class MemePagerAdapter(private val memeDao: MemeDao) : PagingDataAdapter<Meme, M
                 val drawable = ivLike.drawable
                 ivMemePicture.setOnClickListener(object : DoubleClickListener() {
                     override fun onDoubleClick(v: View) {
+                        if (meme.gifURL.isNullOrBlank()) return
+
                         ivLike.alpha = 0.7f
 
                         if (drawable is AnimatedVectorDrawableCompat) {

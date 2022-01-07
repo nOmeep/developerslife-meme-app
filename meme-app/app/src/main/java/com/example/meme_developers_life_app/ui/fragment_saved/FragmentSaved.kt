@@ -1,6 +1,5 @@
 package com.example.meme_developers_life_app.ui.fragment_saved
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -28,7 +27,7 @@ class FragmentSaved: Fragment(R.layout.fragment_saved) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSavedBinding.bind(view)
 
-        val adapter = SavedMemesAdapter(listOf(), viewModel.memeDao)
+        val adapter = SavedMemesAdapter(viewModel.memeDao)
 
         viewModel.getAllSaved().observe(viewLifecycleOwner) { savedMemes ->
             binding.apply {

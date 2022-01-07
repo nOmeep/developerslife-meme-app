@@ -3,7 +3,6 @@ package com.example.meme_developers_life_app.di
 import android.app.Application
 import androidx.room.Room
 import com.example.meme_developers_life_app.api.DevelopersLifeApi
-import com.example.meme_developers_life_app.db.MemeDao
 import com.example.meme_developers_life_app.db.SavedMemesDatabase
 import dagger.Module
 import dagger.Provides

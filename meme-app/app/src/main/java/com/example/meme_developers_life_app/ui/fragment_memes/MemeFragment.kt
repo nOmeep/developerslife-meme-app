@@ -50,7 +50,7 @@ class MemeFragment: Fragment(R.layout.fragment_memes) {
         }
 
         // тут запоминаем мемы
-        viewModel.memes.observe(viewLifecycleOwner) {
+        viewModel.getMemes().observe(viewLifecycleOwner) {
             binding.tvEmptyRequest.isVisible = false
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
