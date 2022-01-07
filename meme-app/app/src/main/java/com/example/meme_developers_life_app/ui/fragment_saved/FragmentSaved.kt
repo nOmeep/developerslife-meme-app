@@ -28,10 +28,13 @@ class FragmentSaved: Fragment(R.layout.fragment_saved) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSavedBinding.bind(view)
 
+        val adapter = SavedMemesAdapter(listOf(), viewModel.memeDao)
+
         viewModel.getAllSaved().observe(viewLifecycleOwner) { savedMemes ->
             binding.apply {
                 tvEmptyList.isVisible = savedMemes.isEmpty()
-                rvSaved.adapter = SavedMemesAdapter(savedMemes, viewModel.memeDao)
+                adapter.submitList(savedMemes)
+                rvSaved.adapter = adapter
             }
         }
 

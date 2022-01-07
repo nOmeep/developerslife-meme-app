@@ -3,12 +3,11 @@
 
     <item
         android:id="@+id/memeFragment"
-        android:title="latest"
+        android:title="memes"
         android:icon="@drawable/ic_latest_memes_bottom_nav"/>
 
     <item
         android:id="@+id/fragmentSaved"
-        android:title="saved"
+        android:title="liked"
         android:icon="@drawable/ic_saved_memes_bottom_nav"/>
-
 </menu>
