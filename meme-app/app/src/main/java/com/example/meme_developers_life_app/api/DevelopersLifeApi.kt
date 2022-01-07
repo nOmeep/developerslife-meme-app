@@ -1,5 +1,6 @@
 package com.example.meme_developers_life_app.api
 
+import com.example.meme_developers_life_app.data.items.Meme
 import com.example.meme_developers_life_app.data.items.MemePage
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -12,6 +13,9 @@ interface DevelopersLifeApi {
     companion object {
         const val BASE_URL = "https://developerslife.ru/"
     }
+
+    @GET("/random?json=true")
+    suspend fun getRandomMeme() : Meme
 
     @GET("/{category}/{page}?json=true")
     suspend fun getLatestMemes(

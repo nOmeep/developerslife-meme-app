@@ -11,6 +11,7 @@ import javax.inject.Inject
 class MemeViewModel @Inject constructor(
     private val repository: MemeRepository
 ) : ViewModel() {
+    val memeDao = repository.memeDao
 
     private val currentCategory = MutableLiveData("latest")
 
@@ -22,8 +23,6 @@ class MemeViewModel @Inject constructor(
     fun switchCategory(category: String) {
         currentCategory.value = category
     }
-
-    val memeDao = repository.memeDao
 
     fun getAllSaved() : LiveData<List<Meme>>{
         return repository.memeDao.getAllSavedMemes()
